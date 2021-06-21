@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CursoDesignPatterns
+namespace CursoDesignPatterns.ExercicioDesconto
 {
 	public class Orcamento
 	{
@@ -12,6 +12,7 @@ namespace CursoDesignPatterns
 		public Orcamento(double valor)
 		{
 			this.valor = valor;
+			Itens = new List<Item>();
 		}
 
 		public void addItem(Item item)

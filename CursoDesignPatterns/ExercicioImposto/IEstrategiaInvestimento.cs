@@ -1,4 +1,4 @@
-﻿namespace CursoDesignPatterns
+﻿namespace CursoDesignPatterns.ExercicioImposto
 {
 	public interface IEstrategiaInvestimento
 	{

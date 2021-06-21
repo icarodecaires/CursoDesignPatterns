@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CursoDesignPatterns
+namespace CursoDesignPatterns.ExercicioImposto
 {
 	public class InvestimentoConservador : IEstrategiaInvestimento
 	{

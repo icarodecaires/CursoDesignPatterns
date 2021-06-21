@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CursoDesignPatterns
+namespace CursoDesignPatterns.ExercicioDesconto
 {
-	public class DescontoMaiorQueQuinhetos : IDesconto
+	public class DescontoMaisQueCincoItens : IDesconto
 	{
 		public IDesconto Proximo { get; set; }
 
 		public double Desconta(Orcamento orcamento)
 		{
-			if(orcamento.valor > 500)
+			if (orcamento.Itens.Count > 5)
 			{
-				return orcamento.valor * 0.07;
+				return orcamento.valor * 0.1;
 			}
 
 			return Proximo.Desconta(orcamento);

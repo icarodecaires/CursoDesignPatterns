@@ -1,4 +1,6 @@
 ﻿using CursoDesignPatterns.ExercicioContaBancaria;
+using CursoDesignPatterns.ExercicioDesconto;
+using CursoDesignPatterns.ExercicioImposto;
 using System;
 
 
@@ -30,6 +32,7 @@ namespace CursoDesignPatterns
 			CalculadorDeDesconto desconto = new CalculadorDeDesconto();
 
 			Orcamento orcamento = new Orcamento(501);
+			orcamento.addItem(new Item("Caneta"));
 
 			Console.WriteLine(desconto.Calcula(orcamento));
 			Console.ReadKey();

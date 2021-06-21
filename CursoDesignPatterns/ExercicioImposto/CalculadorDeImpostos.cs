@@ -1,8 +1,9 @@
-﻿using System;
+﻿using CursoDesignPatterns.ExercicioDesconto;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CursoDesignPatterns
+namespace CursoDesignPatterns.ExercicioImposto
 {
 	public class CalculadorDeImpostos
 	{

@@ -1,4 +1,4 @@
-﻿namespace CursoDesignPatterns
+﻿namespace CursoDesignPatterns.ExercicioDesconto
 {
 	public class Item
 	{

@@ -10,7 +10,7 @@ namespace CursoDesignPatterns.ExercicioImposto
 		public void RealizaCalculo(Orcamento orcamento, Imposto imposto)
 		{
 			double imp = imposto.Calcula(orcamento);
-			Console.WriteLine(imp);
+			Console.WriteLine("IMPOSTO: "+imp);
 		}
 	}
 }

@@ -1,4 +1,6 @@
-﻿using CursoDesignPatterns.ExercicioContaBancaria;
+﻿using CursoDesignPatterns.CriacaoObjetosBuilder;
+using CursoDesignPatterns.EstadosQueVariam;
+using CursoDesignPatterns.ExercicioContaBancaria;
 using CursoDesignPatterns.ExercicioDesconto;
 using CursoDesignPatterns.ExercicioImposto;
 using CursoDesignPatterns.TemplateMethod;
@@ -25,8 +27,54 @@ namespace CursoDesignPatterns
 			//RequisicaoConta(); 
 
 			//Template Method
-			TemplateMethod();
+			//TemplateMethod();
 
+			//Estados que variam - STADE
+			//Stade();
+
+			//Criação de Objetos e Builder e Observer
+			CriacaoObjetosBuilder();
+
+		}
+
+		public static void CriacaoObjetosBuilder()
+		{
+			NotaFiscalBuilder criador = new NotaFiscalBuilder();
+
+			criador.ParaEmpresa("Empresa teste");
+			criador.ComCnpj("23.123.123/0001-12");
+			criador.ComItem(new ItemDaNota("item 1", 100));
+			criador.NaDataAtua();
+			criador.ComObervacoes("observações da nota");
+
+			//Implementação do padrão Observer
+			criador.AddAcao(new EnviadorDeEmail());
+			criador.AddAcao(new EnviaSMS());
+			criador.AddAcao(new NotaFiscalDAO());
+
+			NotaFiscal nd = criador.ConstroiNota();
+
+			Console.ReadKey();
+		}
+
+		public static void Stade()
+		{
+			/*
+				Orcamento orcamento = new Orcamento(100);
+
+				orcamento.Reprova();
+				orcamento.AplicaDescontoExtra();
+
+				Console.WriteLine(orcamento.valor);
+				Console.ReadKey();
+			*/
+
+			//Exercicio conta
+			Conta conta = new Conta(123, 100);
+			Console.WriteLine(conta.Saldo);
+
+			conta.Deposito(50);
+			Console.WriteLine(conta.Saldo);
 		}
 
 		public static void TemplateMethod()

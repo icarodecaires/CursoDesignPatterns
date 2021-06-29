@@ -3,10 +3,12 @@ using CursoDesignPatterns.EstadosQueVariam;
 using CursoDesignPatterns.ExercicioContaBancaria;
 using CursoDesignPatterns.ExercicioDesconto;
 using CursoDesignPatterns.ExercicioImposto;
+using CursoDesignPatterns.Modulo2.Factory;
+using CursoDesignPatterns.Modulo2.Flyweight;
 using CursoDesignPatterns.TemplateMethod;
 using System;
-
-
+using System.Collections.Generic;
+using System.Data;
 
 namespace CursoDesignPatterns
 {
@@ -33,8 +35,42 @@ namespace CursoDesignPatterns
 			//Stade();
 
 			//Criação de Objetos e Builder e Observer
-			CriacaoObjetosBuilder();
+			//CriacaoObjetosBuilder();
 
+			//SEGUNDO MODULO DO CURSO
+
+			//Factory
+			//Factory()
+
+			//Flyweght
+			//Flyweght();
+
+		}
+
+		private static void Flyweght()
+		{
+			NotasMusicais notas = new NotasMusicais();
+			IList<INota> musica = new List<INota>
+			{
+				notas.pega("do"),
+				notas.pega("re"),
+				notas.pega("mi"),
+				notas.pega("fa"),
+				notas.pega("fa"),
+				notas.pega("fa")
+			};
+
+			Piano piano = new Piano();
+			piano.Toca(musica);
+
+		}
+
+		public static void Factory()
+		{
+			IDbConnection conexao = new ConnectionFactory().GetConnection();
+
+			IDbCommand comando = conexao.CreateCommand();
+			comando.CommandText = "SELECT * FROM tabela";
 		}
 
 		public static void CriacaoObjetosBuilder()

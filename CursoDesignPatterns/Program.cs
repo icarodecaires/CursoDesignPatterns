@@ -3,8 +3,12 @@ using CursoDesignPatterns.EstadosQueVariam;
 using CursoDesignPatterns.ExercicioContaBancaria;
 using CursoDesignPatterns.ExercicioDesconto;
 using CursoDesignPatterns.ExercicioImposto;
+using CursoDesignPatterns.Modulo2.Bridge;
 using CursoDesignPatterns.Modulo2.Factory;
 using CursoDesignPatterns.Modulo2.Flyweight;
+using CursoDesignPatterns.Modulo2.Interpreter;
+using CursoDesignPatterns.Modulo2.Memento;
+using CursoDesignPatterns.Modulo2.Visitor;
 using CursoDesignPatterns.TemplateMethod;
 using System;
 using System.Collections.Generic;
@@ -16,6 +20,8 @@ namespace CursoDesignPatterns
 	{
 		static void Main(string[] args)
 		{
+			//Cada método é referente a uma aula
+
 			//Strategy
 			//Imposto(); 
 
@@ -45,6 +51,72 @@ namespace CursoDesignPatterns
 			//Flyweght
 			//Flyweght();
 
+			//Interpreter
+			//Interpreter();
+
+			//Visitor
+			//Visitor();
+
+			//Bridge
+			Bridge();
+
+
+		}
+
+		private static void Bridge()
+		{
+			IEnviador enviador = new EnviaPorEmail();
+			IMensagem mensagem = new MensagemAdministrativa("victor");
+			mensagem.Enviador = enviador;
+
+			mensagem.Envia();
+		}
+
+		private static void Visitor()
+		{
+			IExpressao esquerda = new Soma(new Numero(10), new Numero(10));
+			IExpressao direita = new Subtracao(new Numero(10), new Numero(5));
+
+			Soma soma = new Soma(esquerda, direita);
+			Console.WriteLine(soma.Avaliar());
+
+			ImpressoraVisitor impressora = new ImpressoraVisitor();
+
+			soma.Aceita(impressora);
+			
+		}
+
+		private static void Interpreter() 
+		{
+
+			IExpressao esquerda = new Soma(new Numero(10), new Numero(10));
+			IExpressao direita = new Subtracao(new Numero(10), new Numero(5));
+
+			int resultado = new Soma(esquerda, direita).Avaliar();
+			Console.WriteLine(resultado);
+
+			resultado = new Multiplicacao(direita, direita).Avaliar();
+			Console.WriteLine(resultado);
+
+			resultado= new Divisao(direita, direita).Avaliar();
+			Console.WriteLine(resultado);
+		}
+
+		private static void Memento()
+		{
+			Historico historico = new Historico();
+			Contrato c = new Contrato(DateTime.Now, "Teste", TipoContrato.Novo);
+
+			historico.Adiciona(c.SalvaEstado());
+			c.Avanca();
+			Console.WriteLine(c.Tipo);
+
+
+			historico.Adiciona(c.SalvaEstado());
+			c.Avanca();
+			Console.WriteLine(c.Tipo);
+
+			Console.WriteLine(historico.Pega(0).Contrato.Tipo);
 		}
 
 		private static void Flyweght()
@@ -65,7 +137,7 @@ namespace CursoDesignPatterns
 
 		}
 
-		public static void Factory()
+		private static void Factory()
 		{
 			IDbConnection conexao = new ConnectionFactory().GetConnection();
 
@@ -73,7 +145,7 @@ namespace CursoDesignPatterns
 			comando.CommandText = "SELECT * FROM tabela";
 		}
 
-		public static void CriacaoObjetosBuilder()
+		private static void CriacaoObjetosBuilder()
 		{
 			NotaFiscalBuilder criador = new NotaFiscalBuilder();
 
@@ -93,7 +165,7 @@ namespace CursoDesignPatterns
 			Console.ReadKey();
 		}
 
-		public static void Stade()
+		private static void Stade()
 		{
 			/*
 				Orcamento orcamento = new Orcamento(100);
@@ -128,7 +200,7 @@ namespace CursoDesignPatterns
 
 			Console.ReadKey();
 		}
-		
+
 
 		private static void RequisicaoConta()
 		{

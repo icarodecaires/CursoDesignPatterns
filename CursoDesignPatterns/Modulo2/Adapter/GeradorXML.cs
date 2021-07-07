@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Xml.Serialization;
+
+namespace CursoDesignPatterns.Modulo2.Adapter
+{
+	public class GeradorXML
+	{
+		public string GeraXML(object o)
+		{
+			XmlSerializer serializer = new XmlSerializer(o.GetType());
+
+			StringWriter writer = new StringWriter();
+			serializer.Serialize(writer, o);
+
+			return writer.ToString();
+		}
+	}
+}

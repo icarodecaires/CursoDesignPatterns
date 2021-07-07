@@ -3,7 +3,9 @@ using CursoDesignPatterns.EstadosQueVariam;
 using CursoDesignPatterns.ExercicioContaBancaria;
 using CursoDesignPatterns.ExercicioDesconto;
 using CursoDesignPatterns.ExercicioImposto;
+using CursoDesignPatterns.Modulo2.Adapter;
 using CursoDesignPatterns.Modulo2.Bridge;
+using CursoDesignPatterns.Modulo2.Command;
 using CursoDesignPatterns.Modulo2.Factory;
 using CursoDesignPatterns.Modulo2.Flyweight;
 using CursoDesignPatterns.Modulo2.Interpreter;
@@ -13,6 +15,8 @@ using CursoDesignPatterns.TemplateMethod;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace CursoDesignPatterns
 {
@@ -58,9 +62,41 @@ namespace CursoDesignPatterns
 			//Visitor();
 
 			//Bridge
-			Bridge();
+			//Bridge();
+
+			//Command
+			//Command();
+
+			//Adapter
+			Adapter();
 
 
+		}
+
+		private static void Adapter()
+		{
+			Cliente cliente = new Cliente();
+			cliente.Nome = "Joao Pedro";
+			cliente.Endereco = "rua do arraial";
+
+			string xml = new GeradorXML().GeraXML(cliente);
+
+			Console.WriteLine(xml);
+		}
+
+		private static void Command()
+		{
+			FilaDeTrabalho filaDeTrabalho = new FilaDeTrabalho();
+
+			Pedido pedido1 = new Pedido("Alex", 100.0);
+			Pedido pedido2 = new Pedido("Andre", 200.0);
+
+			filaDeTrabalho.Adiciona(new PagaPedido(pedido1));
+			filaDeTrabalho.Adiciona(new PagaPedido(pedido2));
+
+			filaDeTrabalho.Adiciona(new FinalizaPedido(pedido2));
+
+			filaDeTrabalho.Processa();
 		}
 
 		private static void Bridge()
